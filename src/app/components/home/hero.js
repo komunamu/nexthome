@@ -9,7 +9,7 @@ export default function Hero() {
         <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
           Welcome to
           <br className="hidden lg:inline-block" />
-          Dr. Ko's homepage
+          Dr. Ko&apos;s homepage
         </h1>
         <p className="mb-8 leading-relaxed">
           Accomplished developer and software engineer with a Ph.D., boasting a
