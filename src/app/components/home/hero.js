@@ -16,7 +16,7 @@ export default function Hero() {
           robust educational foundation in Information Technology and a wealth
           of experience across diverse projects and software development
           initiatives. I thrive on embracing new technologies and have a passion
-          for continuous learning. Recently, I’ve been diving into Large
+          for continuous learning. Recently, I&apos;ve been diving into Large
           Language Models (LLMs), expanding my expertise and contributions into
           the dynamic field of artificial intelligence.
         </p>
