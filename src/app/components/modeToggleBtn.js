@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -11,21 +11,16 @@ export default function ModeToggleBtn() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null; // SSR 중에는 아무것도 렌더하지 않음
-
-  const toggleTheme = () => {
-    console.log("Theme is " + (resolvedTheme || "undefined"));
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
-  };
-
-  // Don't render until theme is resolved to avoid hydration mismatch
-  if (!resolvedTheme) {
+  if (!mounted) {
+    // Render a placeholder or nothing on the server to avoid hydration mismatch
     return (
-      <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 rounded text-base mt-4 md:mt-0">
-        Loading...
-      </button>
+      <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 rounded text-base mt-4 md:mt-0 w-28 h-9" />
     );
   }
+
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  };
 
   return (
     <button
@@ -41,7 +36,7 @@ export default function ModeToggleBtn() {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="visible dark:invisible dark:h-0 dark:w-0 h-5 w-5"
+        className="w-5 h-5 ml-2 inline dark:hidden"
       >
         <path
           strokeLinecap="round"
@@ -57,7 +52,7 @@ export default function ModeToggleBtn() {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="visible dark:visible dark:h-5 dark:w-5 h-0 w-0"
+        className="w-5 h-5 ml-2 hidden dark:inline"
       >
         <path
           strokeLinecap="round"
