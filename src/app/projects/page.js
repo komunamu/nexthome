@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Certificates from "../components/projects/Certificates";
+import Websites from "../components/projects/Websites";
 
 // Function to fetch data from Notion API
 async function getNotionData() {
@@ -25,13 +27,10 @@ async function getNotionData() {
     },
     // Ensure we're not getting cached responses
     cache: "no-store",
-    // Disable caching for this request
-    next: { revalidate: 0 },
     body: JSON.stringify({
       // Simplified filter to just get all entries from the database
       // Remove the filter to get all entries
     }),
-    cache: "no-store", // Disable caching for this request
   };
 
   try {
@@ -83,7 +82,7 @@ export default async function Projects() {
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
-            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
+            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 dark:text-white">
               Projects
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
@@ -94,7 +93,7 @@ export default async function Projects() {
             {projects.length > 0 ? (
               projects.map((project, index) => (
                 <div key={index} className="p-4 md:w-1/3">
-                  <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                  <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden dark:border-gray-800">
                     <div className="p-6">
                       <Image
                         src={project.cover?.file?.url}
@@ -108,19 +107,19 @@ export default async function Projects() {
                         quality={100}
                       />
 
-                      <h1 className="title-font text-lg font-semibold text-gray-900 mb-3">
+                      <h1 className="title-font text-lg font-semibold text-gray-900 mb-3 dark:text-white">
                         {project.properties.Name?.title?.[0]?.plain_text ||
                           "Untitled"}
                       </h1>
-                      <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
+                      <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1 dark:text-gray-500">
                         {project.properties.company?.rich_text?.[0]
                           .plain_text || "No Company"}
                       </h2>
-                      <p className="leading-relaxed mb-3">
+                      <p className="leading-relaxed mb-3 dark:text-gray-300">
                         {project.properties.Challenge?.rich_text?.[0]
                           ?.plain_text || ""}
                       </p>
-                      <p className="leading-relaxed mb-3 whitespace-pre-line">
+                      <p className="leading-relaxed mb-3 whitespace-pre-line dark:text-gray-300">
                         {project.properties.Description?.rich_text?.[0]
                           ?.plain_text || "No description"}
                       </p>
@@ -136,6 +135,8 @@ export default async function Projects() {
           </div>
         </div>
       </section>
+      <Certificates />
+      <Websites />
     </>
   );
 }
